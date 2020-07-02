@@ -320,8 +320,8 @@ def submit(n_clicks, sat, inst,path,row,start_date,end_date,level,rp,action):
 
 	r = requests.get(query)
 
-	print('query {}\n r {}'.format(query, r.text))
-	return 'query {}\n r {}'.format(query, r.text)
+	print('query: {}\n r.text: {}'.format(query, r.text))
+	return 'query: {}\n r.text: {}'.format(query, r.text)
 
 #####################################
 @app.callback([Output('TASKS_bargraph', 'figure'),
@@ -359,9 +359,13 @@ def update_graph_scatter(start_date,input_data):
 # Fill the data table
 	sql = "SELECT task,dataset,status,count(*) as amount FROM Activities WHERE launch >= '{}' GROUP BY task,dataset,status ORDER BY task,dataset".format(start_date)
 	sql = "SELECT task,dataset,status,count(*) as amount,MAX(elapsed) as maxe,AVG(elapsed) as avg ,MIN(elapsed) as mine FROM Activities WHERE launch >= '{}' GROUP BY task,dataset,status ORDER BY task".format(start_date)
-	print('update_graph_scatter - sql {}'.format(sql))
+
+	#print('update_graph_scatter - sql {}'.format(sql))
+
 	result = db_fetchall(sql,db='operation')
-	print('update_graph_scatter - result {}'.format(result))
+
+	#print('update_graph_scatter - result {}'.format(result))
+
 	data_table_list = []
 	for i in result:
 		data_table = {}
@@ -378,8 +382,9 @@ def update_graph_scatter(start_date,input_data):
 		data_table['Max'] = maxe
 		data_table['Avg'] = int(avge) if avge is not None else None
 		data_table['Min'] = mine
-		print('update_graph_scatter - data_table {}'.format(data_table))
+
+		#print('update_graph_scatter - data_table {}'.format(data_table))
+
 		data_table_list.append(data_table)
-	
 
 	return {'data': data_graph_list,'layout' : go.Layout(title='Number of Tasks per Status',yaxis=dict(range=[0,maxy]),)},data_table_list
