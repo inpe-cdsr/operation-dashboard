@@ -37,7 +37,7 @@ def get_start_date():
 	sql = 'SELECT MIN(launch) as start_date FROM Activities'
 	result = db_fetchone(sql,db='operation')
 	print('get_start_date - result',result)
-	if result[0] is not None:
+	if result is not None:
 		start_date = result[0].strftime("%Y-%m-%d")
 	else:
 		start_date = dt.now().strftime("%Y-%m-%d")
@@ -344,6 +344,10 @@ def update_graph_scatter(start_date,input_data):
 	)
 	data_graph = {}
 	maxy = 0
+
+	if result is None:
+		return None, None
+
 	for i in result:
 		task = i[0]
 		status = i[1]
