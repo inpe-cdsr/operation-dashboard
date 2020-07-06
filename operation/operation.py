@@ -51,7 +51,7 @@ df = [
 	dict(id='PATH_INPUT',parameter= 'Path', type='input',options=[]),
 	dict(id='ROW_INPUT',parameter= 'Row', type='input',options=[]),
 	dict(id='PERIOD_DATERANGE',parameter= 'Period', type='daterange',options=[],default=dt.now().strftime("%Y-%m-%d")),
-	dict(id='LEVEL_DROPDOWN',parameter= 'Level', type='checklist',options=['2','4'],default=[0]),
+	dict(id='LEVEL_DROPDOWN',parameter= 'Level', type='checklist',options=['2','2B','4']),
 	dict(id='RADIOMETRIC_CHECKLIST',parameter= 'Radiometry', type='checklist',options=['DN','SR'],default=[0]),
 	dict(id='PROCESSING_DROPDOWN',parameter= 'Action', type='dropdown',options=['Publish','Unzip'],default=0)
 
