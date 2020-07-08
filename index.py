@@ -26,13 +26,13 @@ app.layout = html.Div([
 options = html.Div([
     html.H3('Dashboard Options'),
     html.Div(id='operation-display-value'),
-    dcc.Link('Go to Operation', href='/dashboard/operation')
+    dcc.Link('Go to Operation', href='/publisher-dashboard/operation')
 ])
 
 @app.callback(Output('page-content', 'children'),
 			  [Input('url', 'pathname')])
 def display_page(pathname):
-	if pathname == '/dashboard/operation':
+	if pathname == '/publisher-dashboard/operation':
 		return operation.layout
 	else:
 		return options
